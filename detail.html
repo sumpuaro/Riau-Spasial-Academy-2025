@@ -1,0 +1,480 @@
+<!-- detail.html -->
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Pelatihan - RSA 2025</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --text-light: #ffffff;
+            --text-dark: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+        }
+
+        .navbar {
+            background: var(--primary);
+            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+        }
+
+        .navbar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            margin-bottom: 2rem;
+        }
+
+        .detail-header {
+            margin-bottom: 3rem;
+        }
+
+        .month-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .detail-section ul {
+            list-style-type: disc;
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 5rem 1rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="index.html" class="navbar-brand">RSA 2025</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" class="back-button">
+            ← Kembali
+        </a>
+
+        <div id="detail-content">
+            <!-- Content will be populated by JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        // Get training data from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const month = urlParams.get('month');
+
+        // Training data
+        // Complete training data for all months
+        const trainings = {
+            januari: {
+                month: 'Januari',
+                title: 'Integration of Cloud Computing and AI Gen for Mangrove Health Mapping',
+                description: 'Pelatihan ini akan memfokuskan pada bagaimana integrasi cloud computing dan kecerdasan buatan (AI) dapat digunakan untuk pemetaan kesehatan hutan mangrove. Dengan teknologi cloud computing, data dalam jumlah besar dapat disimpan dan diolah secara efisien.',
+                learningObjectives: [
+                    'Memahami konsep dasar cloud computing untuk pengolahan data spasial',
+                    'Menguasai implementasi AI dalam analisis kesehatan mangrove',
+                    'Mengembangkan kemampuan pengolahan data dalam skala besar',
+                    'Memahami visualisasi dan interpretasi hasil analisis'
+                ],
+                materials: [
+                    'Pengenalan platform cloud computing',
+                    'Implementasi AI untuk analisis data spasial',
+                    'Teknik pengolahan data dalam skala besar',
+                    'Metode visualisasi hasil analisis',
+                    'Interpretasi data kesehatan mangrove'
+                ],
+                requirements: [
+                    'Laptop dengan spesifikasi minimum Core i5',
+                    'Koneksi internet yang stabil',
+                    'Pengetahuan dasar GIS',
+                    'Akun Google Cloud Platform (akan diberikan)'
+                ]
+            },
+            februari: {
+                month: 'Februari',
+                title: 'Spatial and Attribute Data Capturing',
+                description: 'Pelatihan ini akan mengarahkan peserta tentang cara memperoleh data spasial dan atribut dengan metode yang langsung maupun tidak langsung. Metode langsung mencakup akuisisi data menggunakan GPS dan aplikasi mobile.',
+                learningObjectives: [
+                    'Menguasai teknik pengumpulan data spasial langsung',
+                    'Memahami penggunaan GPS dan aplikasi mobile untuk pengumpulan data',
+                    'Menguasai teknik digitasi menggunakan GIS software',
+                    'Memahami integrasi data dari berbagai sumber'
+                ],
+                materials: [
+                    'Penggunaan GPS untuk pengumpulan data',
+                    'Pemanfaatan aplikasi Avenza Maps',
+                    'Teknik digitasi menggunakan QGIS/ArcGIS',
+                    'Penggunaan Google Earth Pro',
+                    'Integrasi data spasial dan atribut'
+                ],
+                requirements: [
+                    'Smartphone dengan GPS',
+                    'Laptop dengan software GIS terinstal',
+                    'Koneksi internet stabil',
+                    'Akun Google Earth Pro'
+                ]
+            },
+            maret: {
+                month: 'Maret',
+                title: 'Spatial and Multi-Criteria Analysis for a Certain Suitability Assessment',
+                description: 'Pelatihan ini akan mengajarkan peserta tentang teknik analisis spasial dan multi-kriteria yang digunakan untuk penilaian kesesuaian lahan. Analisis spasial memungkinkan evaluasi berbagai faktor geografis dan lingkungan.',
+                learningObjectives: [
+                    'Memahami konsep analisis multi-kriteria',
+                    'Menguasai metodologi Analytic Hierarchy Process (AHP)',
+                    'Mengembangkan kemampuan Weighted Overlay Analysis',
+                    'Memahami interpretasi hasil analisis kesesuaian'
+                ],
+                materials: [
+                    'Pengantar analisis multi-kriteria',
+                    'Metodologi AHP',
+                    'Weighted Overlay Analysis',
+                    'Pengumpulan dan persiapan data',
+                    'Interpretasi hasil analisis'
+                ],
+                requirements: [
+                    'Laptop dengan software GIS terinstal',
+                    'Pemahaman dasar statistik',
+                    'Pengetahuan dasar GIS',
+                    'Microsoft Excel atau software spreadsheet lainnya'
+                ]
+            },
+            april: {
+                month: 'April',
+                title: 'Introduction to Hydrology Modelling',
+                description: 'Pelatihan ini akan memberikan pengantar yang komprehensif ke dasar-dasar pemodelan hidrologi menggunakan perangkat lunak GIS, dengan penekanan khusus pada konsep Digital Elevation Model (DEM).',
+                learningObjectives: [
+                    'Memahami konsep dasar DEM',
+                    'Menguasai teknik pengolahan data DEM',
+                    'Mengembangkan kemampuan analisis hidrologi',
+                    'Memahami pemodelan aliran air dan risiko banjir'
+                ],
+                materials: [
+                    'Pengenalan Digital Elevation Model',
+                    'Teknik pengolahan DEM',
+                    'Analisis hillshade, slope, dan aspect',
+                    'Delineasi daerah tangkapan air',
+                    'Pemodelan aliran air'
+                ],
+                requirements: [
+                    'Laptop dengan QGIS/ArcGIS terinstal',
+                    'Pemahaman dasar topografi',
+                    'Pengetahuan dasar GIS',
+                    'Data DEM (akan disediakan)'
+                ]
+            },
+            mei: {
+                month: 'Mei',
+                title: 'Introduction to Spatial Database Management and Web GIS',
+                description: 'Pelatihan ini akan memperkenalkan peserta pada manajemen basis data spasial dan pengembangan aplikasi Web GIS. Basis data spasial merupakan komponen penting dalam pengelolaan data geografis.',
+                learningObjectives: [
+                    'Memahami konsep basis data spasial',
+                    'Menguasai PostgreSQL/PostGIS',
+                    'Mengembangkan aplikasi Web GIS',
+                    'Memahami integrasi data spasial ke web'
+                ],
+                materials: [
+                    'Pengenalan PostgreSQL/PostGIS',
+                    'Manajemen basis data spasial',
+                    'Pengembangan Web GIS',
+                    'Integrasi data ke platform web',
+                    'Pembuatan peta interaktif'
+                ],
+                requirements: [
+                    'Laptop dengan PostgreSQL/PostGIS terinstal',
+                    'Pengetahuan dasar SQL',
+                    'Pemahaman dasar HTML/CSS',
+                    'Koneksi internet stabil'
+                ]
+            },
+            juni: {
+                month: 'Juni',
+                title: 'Google Earth Engine for Basic Processing of Satellite Imagery',
+                description: 'Pelatihan ini akan difokuskan pada penggunaan Google Earth Engine (GEE) untuk pengolahan dasar citra satelit. GEE adalah platform komputasi awan yang kuat untuk analisis data geospasial.',
+                learningObjectives: [
+                    'Memahami konsep dasar Google Earth Engine',
+                    'Menguasai pemrograman JavaScript untuk GEE',
+                    'Mengembangkan kemampuan pengolahan citra satelit',
+                    'Memahami analisis temporal menggunakan GEE'
+                ],
+                materials: [
+                    'Pengenalan Google Earth Engine',
+                    'Pemrograman JavaScript untuk GEE',
+                    'Pengolahan citra Landsat dan Sentinel',
+                    'Analisis indeks vegetasi',
+                    'Pembuatan komposit citra'
+                ],
+                requirements: [
+                    'Laptop dengan browser modern',
+                    'Akun Google Earth Engine',
+                    'Pengetahuan dasar JavaScript',
+                    'Koneksi internet stabil'
+                ]
+            },
+            juli: {
+                month: 'Juli',
+                title: 'Water Quality Monitoring through Earth Observation Data',
+                description: 'Pelatihan ini akan fokus pada teknik pemantauan kualitas air menggunakan data penginderaan jauh. Pemantauan kualitas air adalah aspek penting dalam pengelolaan sumber daya air.',
+                learningObjectives: [
+                    'Memahami parameter kualitas air',
+                    'Menguasai teknik pengolahan data satelit',
+                    'Mengembangkan kemampuan analisis kualitas air',
+                    'Memahami interpretasi hasil pemantauan'
+                ],
+                materials: [
+                    'Parameter kualitas air',
+                    'Penggunaan data Landsat dan Sentinel',
+                    'Analisis kekeruhan dan klorofil-a',
+                    'Pemantauan TSS',
+                    'Interpretasi hasil analisis'
+                ],
+                requirements: [
+                    'Laptop dengan software pengolah citra',
+                    'Pengetahuan dasar penginderaan jauh',
+                    'Pemahaman dasar parameter kualitas air',
+                    'Data citra satelit (akan disediakan)'
+                ]
+            },
+            agustus: {
+                month: 'Agustus',
+                title: 'GIS and Remote Sensing for Fisheries Application',
+                description: 'Pelatihan ini akan memberikan pemahaman mendalam tentang daerah penangkapan ikan dan parameter lingkungan yang berkaitan dengan keberadaan ikan.',
+                learningObjectives: [
+                    'Memahami parameter oseanografi',
+                    'Menguasai analisis CPUE',
+                    'Mengembangkan kemampuan pemodelan habitat ikan',
+                    'Memahami pemetaan daerah penangkapan'
+                ],
+                materials: [
+                    'Parameter oseanografi',
+                    'Analisis CPUE',
+                    'Pemodelan habitat ikan',
+                    'Penggunaan data GPS',
+                    'Pemetaan daerah penangkapan'
+                ],
+                requirements: [
+                    'Laptop dengan software GIS',
+                    'GPS receiver',
+                    'Pengetahuan dasar oseanografi',
+                    'Pemahaman dasar perikanan'
+                ]
+            },
+            september: {
+                month: 'September',
+                title: 'An Introduction to Object-Based Image Analysis',
+                description: 'Pelatihan ini akan fokus pada teknik analisis citra berbasis objek (OBIA), yang merupakan metode penting dalam pengolahan citra satelit dan pengindraan jauh.',
+                learningObjectives: [
+                    'Memahami konsep dasar OBIA',
+                    'Menguasai teknik segmentasi citra',
+                    'Mengembangkan kemampuan klasifikasi berbasis objek',
+                    'Memahami evaluasi akurasi hasil'
+                ],
+                materials: [
+                    'Pengantar OBIA',
+                    'Teknik segmentasi citra',
+                    'Klasifikasi berbasis objek',
+                    'Ekstraksi fitur objek',
+                    'Evaluasi akurasi'
+                ],
+                requirements: [
+                    'Laptop dengan eCognition/QGIS',
+                    'Pengetahuan dasar pengolahan citra',
+                    'Data citra resolusi tinggi',
+                    'Pemahaman dasar klasifikasi'
+                ]
+            },
+            oktober: {
+                month: 'Oktober',
+                title: 'An Integration of GIS and Remote Sensing Application for Forestry',
+                description: 'Pelatihan ini akan fokus pada integrasi aplikasi GIS dan penginderaan jauh untuk kehutanan, dengan penekanan khusus pada analisis hotspot dan pemetaan area terbakar.',
+                learningObjectives: [
+                    'Memahami monitoring kebakaran hutan',
+                    'Menguasai analisis hotspot',
+                    'Mengembangkan kemampuan pemetaan area terbakar',
+                    'Memahami analisis dampak kebakaran'
+                ],
+                materials: [
+                    'Monitoring kebakaran hutan',
+                    'Analisis data MODIS/VIIRS',
+                    'Pemetaan area terbakar',
+                    'Analisis temporal',
+                    'Evaluasi dampak kebakaran'
+                ],
+                requirements: [
+                    'Laptop dengan software GIS',
+                    'Akses data satelit MODIS/VIIRS',
+                    'Pengetahuan dasar kehutanan',
+                    'Pemahaman dasar penginderaan jauh'
+                ]
+            },
+            november: {
+                month: 'November',
+                title: 'Changes Detection: Coastline Changes Monitoring using DSAS Tools',
+                description: 'Pelatihan ini akan difokuskan pada teknik deteksi perubahan garis pantai menggunakan alat Digital Shoreline Analysis System (DSAS).',
+                learningObjectives: [
+                    'Memahami konsep perubahan garis pantai',
+                    'Menguasai penggunaan DSAS',
+                    'Mengembangkan kemampuan analisis temporal',
+                    'Memahami interpretasi hasil analisis'
+                ],
+                materials: [
+                    'Pengantar DSAS',
+                    'Persiapan data garis pantai',
+                    'Analisis perubahan temporal',
+                    'Perhitungan laju perubahan',
+                    'Interpretasi hasil'
+                ],
+                requirements: [
+                    'Laptop dengan ArcGIS dan DSAS',
+                    'Data citra multi-temporal',
+                    'Pengetahuan dasar pesisir',
+                    'Pemahaman dasar GIS'
+                ]
+            },
+            desember: {
+                month: 'Desember',
+                title: 'Introduction to Drone Mapping',
+                description: 'Pelatihan ini akan difokuskan pada pemetaan menggunakan drone, yang merupakan alat yang semakin penting dalam berbagai aplikasi penginderaan jauh dan pemantauan lingkungan.',
+                learningObjectives: [
+                    'Memahami operasi drone untuk pemetaan',
+                    'Menguasai perencanaan penerbangan',
+                    'Mengembangkan kemampuan pengolahan data drone',
+                    'Memahami pembuatan produk pemetaan'
+                ],
+                materials: [
+                    'Dasar-dasar drone mapping',
+                    'Perencanaan misi terbang',
+                    'Pengambilan data foto udara',
+                    'Pengolahan data dengan Pix4D/Agisoft',
+                    'Pembuatan orthomosaic dan DSM'
+                ],
+                requirements: [
+                    'Laptop dengan software pengolah foto udara',
+                    'Pengetahuan dasar fotogrametri',
+                    'Pemahaman regulasi drone',
+                    'Drone (akan disediakan untuk praktik)'
+                ]
+            }
+        };
+        // Populate detail content
+        const detailContent = document.getElementById('detail-content');
+        const training = trainings[month];
+
+        if (training) {
+            detailContent.innerHTML = `
+                <header class="detail-header">
+                    <span class="month-badge">${training.month}</span>
+                    <h1 class="detail-title">${training.title}</h1>
+                </header>
+
+                <div class="detail-content">
+                    <div class="detail-section">
+                        <h3>Deskripsi Pelatihan</h3>
+                        <p>${training.description}</p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Tujuan Pembelajaran</h3>
+                        <ul>
+                            ${training.learningObjectives.map(obj => `<li>${obj}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Materi Pelatihan</h3>
+                        <ul>
+                            ${training.materials.map(mat => `<li>${mat}</li>`).join('')}
+                        </ul>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3>Persyaratan</h3>
+                        <ul>
+                            ${training.requirements.map(req => `<li>${req}</li>`).join('')}
+                        </ul>
+                    </div>
+                </div>
+            `;
+        } else {
+            detailContent.innerHTML = `
+                <div class="detail-content">
+                    <p>Pelatihan tidak ditemukan.</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+
+</html>

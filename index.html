@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riau Spasial Academy 2025</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --text-light: #ffffff;
+            --text-dark: #1a1a1a;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        .navbar.scrolled {
+            background: var(--primary);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-logo {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .navbar-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .navbar-links a:hover {
+            opacity: 0.8;
+        }
+
+        /* Mobile menu button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background-color: var(--text-light);
+            margin: 5px 0;
+            transition: var(--transition);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            height: 100%;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: var(--text-light);
+            z-index: 1;
+            width: 90%;
+            max-width: 800px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: var(--text-light);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--text-dark);
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        /* Program Cards */
+        .program-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .program-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .program-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-content {
+            padding: 1.5rem;
+        }
+
+        .program-title {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        /* Schedule Grid */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .schedule-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .schedule-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Form */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: var(--transition);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: white;
+            margin: auto;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-button {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: #666;
+        }
+
+        .close-button:hover {
+            color: #000;
+        }
+
+        .modal-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            padding-right: 2rem;
+        }
+
+        .modal-month {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-description {
+            line-height: 1.6;
+            color: #4b5563;
+        }
+
+        .info-button {
+            background: #e5e7eb;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 0.25rem;
+            margin-top: 1rem;
+            font-size: 0.875rem;
+            color: #4b5563;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .info-button:hover {
+            background: #d1d5db;
+        }
+
+        /* Prevent body scroll when modal is open */
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .navbar-links {
+                position: absolute;
+                top: 100%;
+                /* Mengubah posisi ke bawah navbar */
+                right: 1rem;
+                /* Memberi jarak dari kanan */
+                width: auto;
+                /* Mengubah lebar menjadi auto */
+                height: auto;
+                /* Mengubah tinggi menjadi auto */
+                background: var(--primary);
+                display: none;
+                /* Mengubah display saat tidak aktif */
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                padding: 1rem;
+                border-radius: 0.5rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .navbar-links.active {
+                display: flex;
+                /* Mengubah display saat aktif */
+            }
+
+            .navbar-links a {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+                width: 100%;
+            }
+
+            .navbar-links a:hover {
+                background: var(--secondary);
+                border-radius: 0.25rem;
+            }
+
+            /* Hapus atau sesuaikan animasi hamburger jika diperlukan */
+            .mobile-menu-btn.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+
+            .mobile-menu-btn.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .mobile-menu-btn.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body id="beranda">
+    <nav class="navbar">
+        <a href="#" class="navbar-logo">RSA 2025</a>
+        <!-- Hamburger menu untuk mobile -->
+        <button class="mobile-menu-btn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="navbar-links">
+            <a href="#beranda">Beranda</a>
+            <a href="#about">Tentang</a>
+            <a href="#schedule">Jadwal</a>
+            <a href="#register">Pendaftaran</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-slider">
+            <div class="slide active" style="background-image: url('img/gambar1.jpg')"></div>
+            <div class="slide" style="background-image: url('img/gambar2.jpg')"></div>
+            <div class="slide" style="background-image: url('img/gambar3.jpg')"></div>
+            <div class="slide" style="background-image: url('img/gambar4.jpg')"></div>
+            <div class="slide" style="background-image: url('img/gambar5.jpg')"></div>
+            <div class="slide" style="background-image: url('img/gambar6.jpg')"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Riau Spasial Academy 2025</h1>
+            <p class="hero-subtitle">Exploring the Frontiers of GIS and Remote Sensing</p>
+            <a href="#register" class="btn">Daftar Sekarang</a>
+        </div>
+    </header>
+
+    <section id="about" data-aos="fade-up">
+        <h2 class="section-title">Tentang RSA 2025</h2>
+        <div class="content-wrapper max-w-4xl mx-auto">
+            <p class="mb-6">Program pelatihan komprehensif dalam Sistem Informasi Geografis (SIG) dan Pengindraan Jauh
+                yang diselenggarakan oleh Laboratorium Daerah Penangkapan Ikan, Fakultas Perikanan dan Kelautan,
+                Universitas Riau.</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Tentang Laboratorium</h3>
+                    <p class="mb-4">Laboratorium Daerah Penangkapan Ikan hadir sebagai pusat penelitian dan pengembangan
+                        yang menggabungkan keahlian dalam teknologi informasi, oseanografi, dan ilmu perikanan. Dengan
+                        fokus pada studi komprehensif mengenai daerah penangkapan ikan, laboratorium ini berkomitmen
+                        untuk memberikan solusi berbasis ilmu pengetahuan dan teknologi dalam menghadapi tantangan
+                        perikanan global dan nasional.</p>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Visi & Misi</h3>
+                    <p class="mb-4">Visi kami adalah menjadi pusat unggulan dalam penelitian, pengembangan, dan
+                        penerapan teknologi daerah penangkapan ikan yang berkelanjutan di Indonesia. Misi kami mencakup
+                        penelitian inovatif, pengembangan metode analisis data perikanan, dan kolaborasi dengan berbagai
+                        pemangku kepentingan.</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Fasilitas</h3>
+                    <ul class="list-disc pl-6">
+                        <li>20 unit komputer berperforma tinggi</li>
+                        <li>Perangkat lunak GIS dan pengolah data</li>
+                        <li>Fasilitas penyimpanan dan pengolahan data</li>
+                        <li>Ruang diskusi dan perpustakaan mini</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Bidang Keahlian</h3>
+                    <ul class="list-disc pl-6">
+                        <li>Prediksi daerah penangkapan ikan</li>
+                        <li>Analisis data perikanan tangkap</li>
+                        <li>Aplikasi SIG dalam perikanan</li>
+                        <li>Teknologi penangkapan ikan ramah lingkungan</li>
+                        <li>Oseanografi perikanan</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8">
+                <h3 class="text-xl font-semibold mb-4">Prestasi</h3>
+                <p class="mb-4">Laboratorium kami telah meraih berbagai prestasi internasional, termasuk penghargaan
+                    "The Best Presenter" dalam International Conference of Fisheries and Marine (ICFM-IV) 2023 untuk
+                    penelitian tentang pemetaan ikan Terubuk di Selat Bengkalis.</p>
+            </div>
+
+            <div class="mt-8">
+                <p class="text-sm text-gray-600">Untuk informasi lebih lanjut, silakan hubungi kami melalui email:
+                    laboratorium.daper@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="schedule">
+        <h2 class="section-title">Jadwal Pelatihan 2025</h2>
+        <div class="schedule-grid">
+            <!-- Schedule items will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <section id="register">
+        <h2 class="section-title">Formulir Pendaftaran</h2>
+        <div class="form-container">
+            <form id="registrationForm">
+                <div class="form-group">
+                    <label class="form-label after:content-['*'] after:text-red-500 after:font-bold">Nama
+                        Lengkap</label>
+                    <input type="text" name="nama" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label after:content-['*'] after:text-red-500 after:font-bold">Asal
+                        Institusi</label>
+                    <input type="text" name="institusi" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label after:content-['*'] after:text-red-500 after:font-bold">Email</label>
+                    <input type="email" name="email" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label after:content-['*'] after:text-red-500 after:font-bold">WhatsApp</label>
+                    <input type="tel" name="whatsapp" class="form-input" maxlength="13" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label after:content-['*'] after:text-red-500 after:font-bold">Pilih
+                        Pelatihan</label>
+                    <select name="pelatihan" class="form-input" required>
+                        <!-- Options will be populated by JavaScript -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label after:content-['*'] after:text-red-500 after:font-bold">Alasan Mengikuti
+                        Pelatihan</label>
+                    <textarea name="alasan" class="form-input" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn">Kirim Pendaftaran</button>
+                <div class="form-group mt-4">
+                    <small class="before:content-['*']">Data yang Anda inputkan hanya digunakan untuk kepentingan
+                        pelatihan saja, tidak untuk kepetingan lain.</small>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            offset: 100,
+            once: true
+        });
+
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navbarLinks = document.querySelector('.navbar-links');
+
+        if (mobileMenuBtn && navbarLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('active');
+                navbarLinks.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.navbar-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    navbarLinks.classList.remove('active');
+                });
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!navbarLinks.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                    mobileMenuBtn.classList.remove('active');
+                    navbarLinks.classList.remove('active');
+                }
+            });
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Hero slider
+        const slides = document.querySelectorAll('.slide');
+        let currentSlide = 0;
+
+        function nextSlide() {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        setInterval(nextSlide, 5000);
+
+        // Schedule data
+        // Update the scheduleData array to include descriptions
+        const scheduleData = [
+            {
+                month: 'Januari',
+                title: 'Integration of Cloud Computing and AI Gen for Mangrove Health Mapping',
+                description: 'Pelatihan ini akan memfokuskan pada bagaimana integrasi cloud computing dan kecerdasan buatan (AI) dapat digunakan untuk pemetaan kesehatan hutan mangrove. Dengan teknologi cloud computing, data dalam jumlah besar dapat disimpan dan diolah secara efisien.'
+            },
+            {
+                month: 'Februari',
+                title: 'Spatial and Attribute Data Capturing',
+                description: 'Pelatihan ini akan mengarahkan peserta tentang cara memperoleh data spasial dan atribut dengan metode yang langsung maupun tidak langsung. Metode langsung mencakup akuisisi data menggunakan GPS, di mana peserta akan memanfaatkan smartphone mereka dengan aplikasi seperti Avenza Maps.'
+            },
+            {
+                month: 'Maret',
+                title: 'Spatial and Multi-Criteria Analysis for a Certain Suitability Assessment',
+                description: 'Pelatihan ini akan mengajarkan peserta tentang teknik analisis spasial dan multi-kriteria yang digunakan untuk penilaian kesesuaian lahan. Analisis spasial memungkinkan pengguna untuk mengevaluasi berbagai faktor geografis dan lingkungan untuk menentukan lokasi yang paling sesuai untuk tujuan tertentu.'
+            },
+            {
+                month: 'April',
+                title: 'Introduction to Hydrology Modelling',
+                description: 'Pelatihan ini akan memberikan pengantar yang komprehensif ke dasar-dasar pemodelan hidrologi menggunakan perangkat lunak GIS seperti QGIS atau ArcGIS, dengan penekanan khusus pada konsep Digital Elevation Model (DEM).'
+            },
+            {
+                month: 'Mei',
+                title: 'Introduction to Spatial Database Management and Web GIS',
+                description: 'Pelatihan ini akan memperkenalkan peserta pada manajemen basis data spasial dan pengembangan aplikasi Web GIS. Basis data spasial merupakan komponen penting dalam pengelolaan data geografis yang memungkinkan penyimpanan, manipulasi, dan analisis data spasial secara efisien.'
+            },
+            {
+                month: 'Juni',
+                title: 'Google Earth Engine for Basic Processing of Satellite Imagery',
+                description: 'Pelatihan ini akan difokuskan pada penggunaan Google Earth Engine (GEE) untuk pengolahan dasar citra satelit. Google Earth Engine adalah platform komputasi awan yang kuat dan fleksibel yang memungkinkan analisis data geospasial dalam skala besar.'
+            },
+            {
+                month: 'Juli',
+                title: 'Water Quality Monitoring through Earth Observation Data',
+                description: 'Pelatihan ini akan fokus pada teknik pemantauan kualitas air menggunakan data penginderaan jauh. Pemantauan kualitas air adalah aspek penting dalam pengelolaan sumber daya air dan kesehatan ekosistem.'
+            },
+            {
+                month: 'Agustus',
+                title: 'GIS and Remote Sensing for Fisheries Application',
+                description: 'Pelatihan ini akan memberikan pemahaman mendalam tentang daerah penangkapan ikan dan parameter lingkungan yang berkaitan dengan keberadaan ikan. Peserta akan dikenalkan dengan berbagai parameter lingkungan perairan yang mempengaruhi distribusi ikan.'
+            },
+            {
+                month: 'September',
+                title: 'An Introduction to Object-Based Image Analysis',
+                description: 'Pelatihan ini akan fokus pada teknik analisis citra berbasis objek (Object-Based Image Analysis atau OBIA), yang merupakan metode penting dalam pengolahan citra satelit dan pengindraan jauh.'
+            },
+            {
+                month: 'Oktober',
+                title: 'An Integration of GIS and Remote Sensing Application for Forestry',
+                description: 'Pelatihan ini akan fokus pada integrasi aplikasi GIS dan penginderaan jauh untuk kehutanan, dengan penekanan khusus pada analisis hotspot dan pemetaan area terbakar.'
+            },
+            {
+                month: 'November',
+                title: 'Changes Detection: Coastline Changes Monitoring using DSAS Tools',
+                description: 'Pelatihan ini akan difokuskan pada teknik deteksi perubahan garis pantai menggunakan alat Digital Shoreline Analysis System (DSAS). Pemantauan perubahan garis pantai sangat penting dalam memahami dinamika pesisir.'
+            },
+            {
+                month: 'Desember',
+                title: 'Introduction to Drone Mapping',
+                description: 'Pelatihan ini akan difokuskan pada pemetaan menggunakan drone, yang merupakan alat yang semakin penting dalam berbagai aplikasi penginderaan jauh dan pemantauan lingkungan.'
+            }
+        ];
+
+        // Update the schedule grid population code
+        const scheduleGrid = document.querySelector('.schedule-grid');
+        scheduleData.forEach(item => {
+            const scheduleItem = document.createElement('div');
+            scheduleItem.className = 'schedule-item';
+            scheduleItem.setAttribute('data-aos', 'fade-up');
+            scheduleItem.innerHTML = `
+                <h3 class="text-lg font-bold mb-2">${item.month}</h3>
+                <p class="text-gray-700 mb-4">${item.title}</p>
+                <a href="detail.html?month=${item.month.toLowerCase()}" class="inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition-colors">
+                    Lihat Detail
+                </a>
+            `;
+            scheduleGrid.appendChild(scheduleItem);
+        });
+
+        // Populate training selection dropdown
+        const trainingSelect = document.querySelector('select[name="pelatihan"]');
+        scheduleData.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item.month.toLowerCase();
+            option.textContent = `${item.month} - ${item.title}`;
+            trainingSelect.appendChild(option);
+        });
+
+
+        // Form handling
+        const form = document.getElementById('registrationForm');
+        const scriptURL = 'https://script.google.com/macros/s/AKfycby1TH1wqjBRafj0-a3vaCuDQhtnCeQ59cLWJUauN5Pi--_VluraGMVpa79f5n8577C_/exec';
+
+        // Form validation functions
+        function validateInput(input) {
+            const value = input.value.trim();
+            let isValid = true;
+            let errorMessage = '';
+
+            switch (input.name) {
+                case 'nama':
+                    if (value.length < 3) {
+                        isValid = false;
+                        errorMessage = 'Nama harus minimal 3 karakter';
+                    }
+                    break;
+                case 'institusi':
+                    if (value.length < 3) {
+                        isValid = false;
+                        errorMessage = 'Institusi harus minimal 3 karakter';
+                    }
+                    break;
+                case 'email':
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Format email tidak valid';
+                    }
+                    break;
+                case 'whatsapp':
+                    const phoneRegex = /^\d{10,13}$/;
+                    if (!phoneRegex.test(value)) {
+                        isValid = false;
+                        errorMessage = 'Nomor WhatsApp harus 10-13 digit';
+                    }
+                    break;
+                case 'alasan':
+                    if (value.length < 10) {
+                        isValid = false;
+                        errorMessage = 'Alasan harus minimal 10 karakter';
+                    }
+                    break;
+            }
+
+            updateInputValidationUI(input, isValid, errorMessage);
+            return isValid;
+        }
+
+        function updateInputValidationUI(input, isValid, errorMessage) {
+            const existingError = input.parentElement.querySelector('.input-error');
+            if (existingError) {
+                existingError.remove();
+            }
+
+            if (!isValid) {
+                input.classList.add('invalid');
+                const errorDiv = document.createElement('div');
+                errorDiv.className = 'input-error';
+                errorDiv.style.cssText = 'color: #dc2626; font-size: 0.75rem; margin-top: 0.25rem;';
+                errorDiv.textContent = errorMessage;
+                input.parentElement.appendChild(errorDiv);
+            } else {
+                input.classList.remove('invalid');
+            }
+        }
+
+        function showSuccess() {
+            const successDiv = document.createElement('div');
+            successDiv.className = 'success-message';
+            successDiv.style.cssText = `
+                background: #dcfce7;
+                color: #15803d;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 5px;
+                font-size: 0.875rem;
+                text-align: center;
+            `;
+            successDiv.textContent = 'Pendaftaran berhasil! Kami akan menghubungi Anda melalui WhatsApp atau email yang telah didaftarkan.';
+
+            const formContainer = document.querySelector('.form-container');
+            formContainer.insertBefore(successDiv, form);
+
+            setTimeout(() => successDiv.remove(), 5000);
+        }
+
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.style.cssText = `
+                background: #fee2e2;
+                color: #dc2626;
+                padding: 1rem;
+                margin-bottom: 1rem;
+                border-radius: 5px;
+                font-size: 0.875rem;
+                text-align: center;
+            `;
+            errorDiv.textContent = message;
+
+            const formContainer = document.querySelector('.form-container');
+            formContainer.insertBefore(errorDiv, form);
+
+            setTimeout(() => errorDiv.remove(), 5000);
+        }
+
+        // Initialize form event listeners
+        if (form) {
+            // Add input validation on blur
+            form.querySelectorAll('.form-input').forEach(input => {
+                input.addEventListener('blur', () => validateInput(input));
+                input.addEventListener('input', () => {
+                    input.classList.remove('invalid');
+                    const errorMessage = input.parentElement.querySelector('.input-error');
+                    if (errorMessage) {
+                        errorMessage.remove();
+                    }
+                });
+            });
+
+            // Form submission handler
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+
+                // Validate all inputs before submission
+                let isValid = true;
+                form.querySelectorAll('.form-input').forEach(input => {
+                    if (!validateInput(input)) {
+                        isValid = false;
+                    }
+                });
+
+                if (!isValid) return;
+
+                // Show loading state
+                const submitButton = form.querySelector('button[type="submit"]');
+                submitButton.disabled = true;
+                submitButton.textContent = 'Mengirim...';
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: new FormData(form)
+                })
+                    .then(response => {
+                        showSuccess();
+                        form.reset();
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        showError('Terjadi kesalahan. Silakan coba lagi.');
+                    })
+                    .finally(() => {
+                        // Reset button state
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Kirim Pendaftaran';
+                    });
+            });
+        }
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
